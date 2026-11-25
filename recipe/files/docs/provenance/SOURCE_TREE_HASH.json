@@ -1,0 +1,9 @@
+{
+  "schema": "kitforge.source_tree_hash.v1",
+  "slug": "percona",
+  "repo": "https://github.com/percona/percona-server",
+  "ref": "Percona-Server-9.7.2-2",
+  "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
+  "tree_listing_sha256": "5e375ebb44dd748378b684ac1550632360d163dbce826c53c90ee5c04c7927f9",
+  "file_count": 63386
+}

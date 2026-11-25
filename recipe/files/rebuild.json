@@ -1,0 +1,36 @@
+{
+  "bases": [
+    {
+      "digest": "sha256:77eb101c607d6e3d4f5ad0c8a02c2136c689b98aba1f359e6502ba517e5c57ec",
+      "layout": "bases/ubuntu_24.04_2198e4c65076.oci",
+      "ref": "ubuntu:24.04@sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5"
+    }
+  ],
+  "engine": {
+    "archive": "toolchain/buildkit.tar",
+    "image_digest": "sha256:e0e67ea9c4bb07bdef683e29f70f3b623d1eb9c82274a9ec04e6bb0511449fb0",
+    "kind": "buildkit",
+    "tag": "moby/buildkit:v0.31.2"
+  },
+  "inputs": {
+    "context": ".",
+    "dockerfile": "Dockerfile.offline.pinned",
+    "mtime_policy": "clamp",
+    "source_date_epoch": 1794476898,
+    "tree_hash": "sha256:e9a37d65b93118803ff293224353d198fd26555e892a674b465ec1a93d927a2f"
+  },
+  "probe": {
+    "exec": "mysqladmin --protocol=tcp --host=127.0.0.1 --port=3306 --connect-timeout=5 --silent ping",
+    "port": 3306,
+    "secrets": [
+      "MYSQL_ROOT_PASSWORD"
+    ],
+    "timeout_s": 180
+  },
+  "schema": "readystack-rebuild-bundle/v0.1",
+  "subject": {
+    "config_digest": "sha256:597c44cb976562f85f05883a9fc4faa4bb821499bdc56bb6919358b92498a12f",
+    "image_manifest_digest": "sha256:186d5ba406023ee3efbb570a00073ea62a366535d91e471dda71d9b19e356c23",
+    "name": "docker.io/readystack/percona:9.7.2-2-CE-ubuntu24.04-r3"
+  }
+}

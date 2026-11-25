@@ -1,0 +1,131 @@
+{
+  "apt_refresh": [
+    {
+      "min_version": "2.8.4ubuntu0.1",
+      "package": "apt",
+      "reason": "CVE-2026-109518: apt 2.8.3 -> 2.8.4ubuntu0.1"
+    },
+    {
+      "min_version": "2.8.4ubuntu0.1",
+      "package": "libapt-pkg6.0t64",
+      "reason": "CVE-2026-109518: libapt-pkg6.0t64 2.8.3 -> 2.8.4ubuntu0.1"
+    },
+    {
+      "min_version": "10.42-4ubuntu2.2",
+      "package": "libpcre2-8-0",
+      "reason": "CVE-2026-103111, CVE-2026-86145, CVE-2026-89157, CVE-2026-89161: libpcre2-8-0 10.42-4ubuntu2.1 -> 10.42-4ubuntu2.2"
+    },
+    {
+      "min_version": "5.38.2-3.2ubuntu0.7",
+      "package": "perl-base",
+      "reason": "USN-9006-1: perl-base 5.38.2-3.2ubuntu0.6 -> 5.38.2-3.2ubuntu0.7"
+    }
+  ],
+  "binaries_from_source": [
+    {
+      "name": "mysqld",
+      "out_path": "/usr/local/mysql/bin/mysqld",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysql",
+      "out_path": "/usr/local/mysql/bin/mysql",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysqladmin",
+      "out_path": "/usr/local/mysql/bin/mysqladmin",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysqldump",
+      "out_path": "/usr/local/mysql/bin/mysqldump",
+      "verify_subcmd": "--version"
+    }
+  ],
+  "build_method": "source-rebuild-c",
+  "chain_id": 1049,
+  "dep_bumps": [],
+  "expected_residuals": [],
+  "images": [
+    {
+      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "ref": "ubuntu:24.04",
+      "role": "builder"
+    },
+    {
+      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "ref": "ubuntu:24.04",
+      "role": "offline_builder"
+    },
+    {
+      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "ref": "ubuntu:24.04",
+      "role": "base"
+    }
+  ],
+  "mod_replaces": [],
+  "runtime_packages": [
+    "libssl3t64",
+    "zlib1g",
+    "libzstd1",
+    "liblz4-1",
+    "libicu74",
+    "libaio1t64",
+    "libncurses6",
+    "libtinfo6",
+    "tzdata",
+    "libldap2",
+    "libsasl2-2",
+    "libcurl4t64"
+  ],
+  "schema": "kitforge.toolchain_lock.v1",
+  "slug": "percona",
+  "source": {
+    "build_cmds": [
+      "cmake -S . -B build -DBUILD_CONFIG=mysql_release -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DINSTALL_LAYOUT=STANDALONE -DREPRODUCIBLE_BUILD=ON '-DCOMPILATION_COMMENT=ReadyStack build of Percona Server (GPL)' '-DCOMPILATION_COMMENT_SERVER=ReadyStack build of Percona Server (GPL)' -DWITH_SSL=system -DWITH_ZLIB=system -DWITH_ZSTD=system -DWITH_LZ4=system -DWITH_ICU=system -DWITH_PROTOBUF=bundled -DWITH_EDITLINE=bundled -DWITH_TIRPC=bundled -DWITH_CURL=system -DWITH_FIDO=none -DWITH_AUTHENTICATION_LDAP=OFF -DWITH_AUTHENTICATION_KERBEROS=OFF -DWITH_AUTHENTICATION_WEBAUTHN=OFF -DWITH_AUTHENTICATION_CLIENT_PLUGINS=OFF -DWITH_ROUTER=OFF -DWITH_UNIT_TESTS=OFF -DWITH_ROCKSDB=ON -DROCKSDB_DISABLE_AVX2=1 -DROCKSDB_DISABLE_MARCH_NATIVE=1 -DWITH_PAM=ON -DWITH_PERCONA_TELEMETRY=OFF -DWITH_JS_LANG=OFF -DWITH_NDB=OFF -DWITHOUT_NDBCLUSTER_STORAGE_ENGINE=ON -DWITH_SYSTEMD=OFF -DWITH_NUMA=OFF -DWITHOUT_THREAD_POOL=1 -DINSTALL_MYSQLTESTDIR= -DINSTALL_STATIC_LIBRARIES=OFF",
+      "J=$(nproc); M=$(awk '/MemAvailable/ {print int($2/2097152)}' /proc/meminfo); [ \"$M\" -ge 1 ] || M=1; [ \"$M\" -lt \"$J\" ] && J=$M; echo \"compiling with $J parallel jobs\"; cmake --build build --parallel \"$J\"",
+      "cmake --install build --strip",
+      "cmake --install build --component Test --prefix /tmp/test-component && (cd /tmp/test-component && find . \\( -type f -o -type l \\) -print0) | (cd /usr/local/mysql && xargs -0 -r rm -f) && rm -rf /tmp/test-component",
+      "rm -f /usr/local/mysql/docs/INFO_BIN /usr/local/mysql/docs/INFO_SRC"
+    ],
+    "build_env": {
+      "DEB_BUILD_MAINT_OPTIONS": "optimize=-lto"
+    },
+    "build_packages": [
+      "build-essential",
+      "cmake",
+      "bison",
+      "pkg-config",
+      "perl",
+      "libssl-dev",
+      "zlib1g-dev",
+      "libzstd-dev",
+      "liblz4-dev",
+      "libicu-dev",
+      "libaio-dev",
+      "libncurses-dev",
+      "rpcsvc-proto",
+      "libpam0g-dev",
+      "git",
+      "libldap-dev",
+      "libsasl2-dev",
+      "libcurl4-openssl-dev"
+    ],
+    "build_system": "cmake",
+    "builder_image": "ubuntu:24.04",
+    "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
+    "commit_epoch": 1789902098,
+    "install_prefix": "/usr/local/mysql",
+    "ref": "Percona-Server-9.7.2-2",
+    "repo": "https://github.com/percona/percona-server",
+    "source_date_epoch": 1794476898,
+    "source_date_epoch_basis": "release-cut",
+    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r3 was cut (2026-11-12T09:48:18Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
+    "source_prep": [
+      "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
+    ],
+    "vendored_deps": true
+  },
+  "version": "9.7.2-2"
+}

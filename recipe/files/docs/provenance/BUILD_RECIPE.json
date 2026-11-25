@@ -1,0 +1,91 @@
+{
+  "schema": "kitforge.build_recipe.v1",
+  "slug": "percona",
+  "image": "readystack/percona:9.7.2-2-CE-ubuntu24.04-r3",
+  "build_method": "source-rebuild-c",
+  "source": {
+    "repo": "https://github.com/percona/percona-server",
+    "ref": "Percona-Server-9.7.2-2",
+    "builder_image": "ubuntu:24.04",
+    "build_system": "cmake",
+    "build_packages": [
+      "build-essential",
+      "cmake",
+      "bison",
+      "pkg-config",
+      "perl",
+      "libssl-dev",
+      "zlib1g-dev",
+      "libzstd-dev",
+      "liblz4-dev",
+      "libicu-dev",
+      "libaio-dev",
+      "libncurses-dev",
+      "rpcsvc-proto",
+      "libpam0g-dev",
+      "git",
+      "libldap-dev",
+      "libsasl2-dev",
+      "libcurl4-openssl-dev"
+    ],
+    "build_env": {
+      "DEB_BUILD_MAINT_OPTIONS": "optimize=-lto"
+    },
+    "build_cmds": [
+      "cmake -S . -B build -DBUILD_CONFIG=mysql_release -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DINSTALL_LAYOUT=STANDALONE -DREPRODUCIBLE_BUILD=ON '-DCOMPILATION_COMMENT=ReadyStack build of Percona Server (GPL)' '-DCOMPILATION_COMMENT_SERVER=ReadyStack build of Percona Server (GPL)' -DWITH_SSL=system -DWITH_ZLIB=system -DWITH_ZSTD=system -DWITH_LZ4=system -DWITH_ICU=system -DWITH_PROTOBUF=bundled -DWITH_EDITLINE=bundled -DWITH_TIRPC=bundled -DWITH_CURL=system -DWITH_FIDO=none -DWITH_AUTHENTICATION_LDAP=OFF -DWITH_AUTHENTICATION_KERBEROS=OFF -DWITH_AUTHENTICATION_WEBAUTHN=OFF -DWITH_AUTHENTICATION_CLIENT_PLUGINS=OFF -DWITH_ROUTER=OFF -DWITH_UNIT_TESTS=OFF -DWITH_ROCKSDB=ON -DROCKSDB_DISABLE_AVX2=1 -DROCKSDB_DISABLE_MARCH_NATIVE=1 -DWITH_PAM=ON -DWITH_PERCONA_TELEMETRY=OFF -DWITH_JS_LANG=OFF -DWITH_NDB=OFF -DWITHOUT_NDBCLUSTER_STORAGE_ENGINE=ON -DWITH_SYSTEMD=OFF -DWITH_NUMA=OFF -DWITHOUT_THREAD_POOL=1 -DINSTALL_MYSQLTESTDIR= -DINSTALL_STATIC_LIBRARIES=OFF",
+      "J=$(nproc); M=$(awk '/MemAvailable/ {print int($2/2097152)}' /proc/meminfo); [ \"$M\" -ge 1 ] || M=1; [ \"$M\" -lt \"$J\" ] && J=$M; echo \"compiling with $J parallel jobs\"; cmake --build build --parallel \"$J\"",
+      "cmake --install build --strip",
+      "cmake --install build --component Test --prefix /tmp/test-component && (cd /tmp/test-component && find . \\( -type f -o -type l \\) -print0) | (cd /usr/local/mysql && xargs -0 -r rm -f) && rm -rf /tmp/test-component",
+      "rm -f /usr/local/mysql/docs/INFO_BIN /usr/local/mysql/docs/INFO_SRC"
+    ],
+    "install_prefix": "/usr/local/mysql",
+    "vendored_deps": true,
+    "_note": "BUILD_CONFIG=mysql_release is upstream's release profile (it turns on REPRODUCIBLE_BUILD for release build types and requires libaio), and the flags follow our MySQL build plus the Percona features of Percona's own release build (build-ps/build-binary.sh at the tag): MyRocks (-DWITH_ROCKSDB=ON, with AVX2 and -march=native off so the binary runs on any x86-64 host and builds the same everywhere) and the PAM authentication plugin (-DWITH_PAM=ON). Left out on purpose: Percona's telemetry (-DWITH_PERCONA_TELEMETRY=OFF: the server component and the call-home agent of Percona's packages report to check.percona.com) and JavaScript stored programs (-DWITH_JS_LANG=OFF: they need a V8 build (build-ps/build_v8.sh) that is not part of the source tree). COMPILATION_COMMENT names this build in @@version_comment. -DWITHOUT_THREAD_POOL=1 drops Oracle's thread_pool plugin as in our MySQL build; Percona's own thread pool (thread_handling=pool-of-threads) is part of mysqld.",
+    "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
+    "source_date_epoch": 1794476898,
+    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r3 was cut (2026-11-12T09:48:18Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
+    "source_prep": [
+      "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
+    ],
+    "_source_prep_note": "Percona Server's tree has four git submodules (storage/rocksdb/rocksdb, extra/coredumper, extra/libkmip, extra/jwt-cpp, .gitmodules at the tag); the vendor stage fetches them at the commits the tag records, so the vendored source is complete and the --network=none build fetches nothing.",
+    "_percona_plugins_note": "2026-10-28, chain 759 parked at assemble_kit: Percona's own LDAP authentication plugins (plugin/auth_ldap, WITH_PERCONA_AUTHENTICATION_LDAP, GPL, on by default; MySQL's authentication_ldap stays off) need libldap and libsasl2, and its keyring_vault component needs libcurl: added to the build and runtime packages, and WITH_CURL=system. Configure measured on the controller with these packages: Configuring done.",
+    "source_date_epoch_basis": "release-cut",
+    "commit_epoch": 1789902098
+  },
+  "binaries_from_source": [
+    {
+      "name": "mysqld",
+      "out_path": "/usr/local/mysql/bin/mysqld",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysql",
+      "out_path": "/usr/local/mysql/bin/mysql",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysqladmin",
+      "out_path": "/usr/local/mysql/bin/mysqladmin",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "mysqldump",
+      "out_path": "/usr/local/mysql/bin/mysqldump",
+      "verify_subcmd": "--version"
+    }
+  ],
+  "runtime_packages": [
+    "libssl3t64",
+    "zlib1g",
+    "libzstd1",
+    "liblz4-1",
+    "libicu74",
+    "libaio1t64",
+    "libncurses6",
+    "libtinfo6",
+    "tzdata",
+    "libldap2",
+    "libsasl2-2",
+    "libcurl4t64"
+  ]
+}

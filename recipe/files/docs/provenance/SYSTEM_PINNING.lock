@@ -1,0 +1,12 @@
+libssl3t64
+zlib1g
+libzstd1
+liblz4-1
+libicu74
+libaio1t64
+libncurses6
+libtinfo6
+tzdata
+libldap2
+libsasl2-2
+libcurl4t64
