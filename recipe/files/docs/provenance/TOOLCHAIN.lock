@@ -19,6 +19,11 @@
       "min_version": "5.38.2-3.2ubuntu0.7",
       "package": "perl-base",
       "reason": "USN-9006-1: perl-base 5.38.2-3.2ubuntu0.6 -> 5.38.2-3.2ubuntu0.7"
+    },
+    {
+      "min_version": "0.10.6-2ubuntu0.6",
+      "package": "libssh-4",
+      "reason": "USN-9187-1: libssh-4 0.10.6-2ubuntu0.5 -> 0.10.6-2ubuntu0.6"
     }
   ],
   "binaries_from_source": [
@@ -44,22 +49,22 @@
     }
   ],
   "build_method": "source-rebuild-c",
-  "chain_id": 1049,
+  "chain_id": 1248,
   "dep_bumps": [],
   "expected_residuals": [],
   "images": [
     {
-      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
       "ref": "ubuntu:24.04",
       "role": "builder"
     },
     {
-      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
       "ref": "ubuntu:24.04",
       "role": "offline_builder"
     },
     {
-      "digest": "sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5",
+      "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
       "ref": "ubuntu:24.04",
       "role": "base"
     }
@@ -119,9 +124,9 @@
     "install_prefix": "/usr/local/mysql",
     "ref": "Percona-Server-9.7.2-2",
     "repo": "https://github.com/percona/percona-server",
-    "source_date_epoch": 1794476898,
+    "source_date_epoch": 1795543333,
     "source_date_epoch_basis": "release-cut",
-    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r3 was cut (2026-11-12T09:48:18Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
+    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r4 was cut (2026-11-24T18:02:13Z), by scripts/rerelease-agenda.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
     "source_prep": [
       "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
     ],

@@ -1,7 +1,7 @@
 {
   "schema": "kitforge.build_recipe.v1",
   "slug": "percona",
-  "image": "readystack/percona:9.7.2-2-CE-ubuntu24.04-r3",
+  "image": "readystack/percona:9.7.2-2-CE-ubuntu24.04-r4",
   "build_method": "source-rebuild-c",
   "source": {
     "repo": "https://github.com/percona/percona-server",
@@ -42,8 +42,8 @@
     "vendored_deps": true,
     "_note": "BUILD_CONFIG=mysql_release is upstream's release profile (it turns on REPRODUCIBLE_BUILD for release build types and requires libaio), and the flags follow our MySQL build plus the Percona features of Percona's own release build (build-ps/build-binary.sh at the tag): MyRocks (-DWITH_ROCKSDB=ON, with AVX2 and -march=native off so the binary runs on any x86-64 host and builds the same everywhere) and the PAM authentication plugin (-DWITH_PAM=ON). Left out on purpose: Percona's telemetry (-DWITH_PERCONA_TELEMETRY=OFF: the server component and the call-home agent of Percona's packages report to check.percona.com) and JavaScript stored programs (-DWITH_JS_LANG=OFF: they need a V8 build (build-ps/build_v8.sh) that is not part of the source tree). COMPILATION_COMMENT names this build in @@version_comment. -DWITHOUT_THREAD_POOL=1 drops Oracle's thread_pool plugin as in our MySQL build; Percona's own thread pool (thread_handling=pool-of-threads) is part of mysqld.",
     "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
-    "source_date_epoch": 1794476898,
-    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r3 was cut (2026-11-12T09:48:18Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
+    "source_date_epoch": 1795543333,
+    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r4 was cut (2026-11-24T18:02:13Z), by scripts/rerelease-agenda.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
     "source_prep": [
       "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
     ],

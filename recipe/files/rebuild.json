@@ -1,9 +1,9 @@
 {
   "bases": [
     {
-      "digest": "sha256:77eb101c607d6e3d4f5ad0c8a02c2136c689b98aba1f359e6502ba517e5c57ec",
-      "layout": "bases/ubuntu_24.04_2198e4c65076.oci",
-      "ref": "ubuntu:24.04@sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5"
+      "digest": "sha256:9a04f13b3f80ef056361e30868593b1cfd2279fe19e4081cb93a90bf56819d6a",
+      "layout": "bases/ubuntu_24.04_9c7f200c07e3.oci",
+      "ref": "ubuntu:24.04@sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289"
     }
   ],
   "engine": {
@@ -16,8 +16,8 @@
     "context": ".",
     "dockerfile": "Dockerfile.offline.pinned",
     "mtime_policy": "clamp",
-    "source_date_epoch": 1794476898,
-    "tree_hash": "sha256:e9a37d65b93118803ff293224353d198fd26555e892a674b465ec1a93d927a2f"
+    "source_date_epoch": 1795543333,
+    "tree_hash": "sha256:c035aeea835e0c8415b8692f856da8c97c1cf028532afbd88ce2abed8bee9627"
   },
   "probe": {
     "exec": "mysqladmin --protocol=tcp --host=127.0.0.1 --port=3306 --connect-timeout=5 --silent ping",
@@ -29,8 +29,8 @@
   },
   "schema": "readystack-rebuild-bundle/v0.1",
   "subject": {
-    "config_digest": "sha256:597c44cb976562f85f05883a9fc4faa4bb821499bdc56bb6919358b92498a12f",
-    "image_manifest_digest": "sha256:186d5ba406023ee3efbb570a00073ea62a366535d91e471dda71d9b19e356c23",
-    "name": "docker.io/readystack/percona:9.7.2-2-CE-ubuntu24.04-r3"
+    "config_digest": "sha256:09dc8148839e15a24a872ca733490b7a85b15ecfd74478596d623a969595fd9e",
+    "image_manifest_digest": "sha256:0a56b596de0bd71569413600002da22b5741f8d203797a06b467a32e40116ad6",
+    "name": "docker.io/readystack/percona:9.7.2-2-CE-ubuntu24.04-r4"
   }
 }
