@@ -1,6 +1,6 @@
-# Build kit for `readystack/percona:9.7.2-3-CE-ubuntu24.04-r1`
+# Build kit for `readystack/percona:9.7.2-3-CE-ubuntu24.04-r2`
 
-This archive rebuilds the linux/amd64 image `readystack/percona:9.7.2-3-CE-ubuntu24.04-r1` from its own contents, with the network off, and checks the result against the image digest ReadyStack published, `sha256:bb3762ab917d90890bf0867d815770b45a92b256a2b937c23060a94859a1947b` (also in `TARGET_DIGEST.txt`). It holds everything the build needs, not the image itself.
+This archive rebuilds the linux/amd64 image `readystack/percona:9.7.2-3-CE-ubuntu24.04-r2` from its own contents, with the network off, and checks the result against the image digest ReadyStack published, `sha256:3b8c785b0c6400f4b36e293529b67ca3b8fa0c2f24057798d8086fdc6f389fc2` (also in `TARGET_DIGEST.txt`). It holds everything the build needs, not the image itself.
 
 Every release of this kit, its recipe and its defect issues are published at https://github.com/readystack-dev/percona; the product page is https://readystack.dev/products/percona.
 
@@ -9,8 +9,8 @@ Every release of this kit, its recipe and its defect issues are published at htt
 You need linux/amd64 Docker with `buildx` 0.30 or later, `jq` and `tar` (docs/REBUILD.md lists the rest, if any, and the hardware ReadyStack used).
 
 ```
-tar -xpzf ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.tar.gz    # -p keeps each file's mode
-cd 9.7.2-3-CE-ubuntu24.04-r1
+tar -xpzf ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.tar.gz    # -p keeps each file's mode
+cd 9.7.2-3-CE-ubuntu24.04-r2
 ./BUILD_OFFLINE.sh            # builds with the network off, from this archive alone
 ./VERIFY_OFFLINE.sh           # compares the rebuilt digest with the published one, then checks the image
 ```
@@ -25,8 +25,8 @@ ReadyStack signs this archive's `rebuild.json` with its release key once the fin
 
 ```
 curl -fsSLo ../cosign.pub https://readystack.dev/keys/cosign.pub
-curl -fsSLo ../ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json.sigstore https://readystack.dev/api/kit/percona/9.7.2-3-CE-ubuntu24.04-r1/files/ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json.sigstore
-python3 docs/rebuild-bundle/rebuild_bundle.py validate . --key ../cosign.pub --signature ../ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json.sigstore
+curl -fsSLo ../ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.rebuild.json.sigstore https://readystack.dev/api/kit/percona/9.7.2-3-CE-ubuntu24.04-r2/files/ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.rebuild.json.sigstore
+python3 docs/rebuild-bundle/rebuild_bundle.py validate . --key ../cosign.pub --signature ../ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.rebuild.json.sigstore
 ```
 
 `validate` needs Python 3 and cosign. Without building anything it checks the signature over `rebuild.json`, every file's checksum, the tree hash over every file's path, mode and content, each base image layout's digest and the builder archive. `verify`, with the same arguments, also rebuilds with the builder's network egress blocked and exits 0 only when the rebuilt digest is the published one (docs/REBUILD.md).

@@ -24,6 +24,26 @@
       "min_version": "0.10.6-2ubuntu0.6",
       "package": "libssh-4",
       "reason": "USN-9187-1: libssh-4 0.10.6-2ubuntu0.5 -> 0.10.6-2ubuntu0.6"
+    },
+    {
+      "min_version": "1.20.1-6ubuntu2.12",
+      "package": "libgssapi-krb5-2",
+      "reason": "USN-9202-1: libgssapi-krb5-2 1.20.1-6ubuntu2.10 -> 1.20.1-6ubuntu2.12"
+    },
+    {
+      "min_version": "1.20.1-6ubuntu2.12",
+      "package": "libk5crypto3",
+      "reason": "USN-9202-1: libk5crypto3 1.20.1-6ubuntu2.10 -> 1.20.1-6ubuntu2.12"
+    },
+    {
+      "min_version": "1.20.1-6ubuntu2.12",
+      "package": "libkrb5-3",
+      "reason": "USN-9202-1: libkrb5-3 1.20.1-6ubuntu2.10 -> 1.20.1-6ubuntu2.12"
+    },
+    {
+      "min_version": "1.20.1-6ubuntu2.12",
+      "package": "libkrb5support0",
+      "reason": "USN-9202-1: libkrb5support0 1.20.1-6ubuntu2.10 -> 1.20.1-6ubuntu2.12"
     }
   ],
   "binaries_from_source": [
@@ -49,7 +69,7 @@
     }
   ],
   "build_method": "source-rebuild-c",
-  "chain_id": 1258,
+  "chain_id": 1291,
   "dep_bumps": [],
   "expected_residuals": [],
   "images": [
@@ -124,9 +144,9 @@
     "install_prefix": "/usr/local/mysql",
     "ref": "Percona-Server-9.7.2-3",
     "repo": "https://github.com/percona/percona-server",
-    "source_date_epoch": 1795614470,
+    "source_date_epoch": 1795672795,
     "source_date_epoch_basis": "release-cut",
-    "source_date_epoch_provenance": "the time release 9.7.2-3-CE-ubuntu24.04-r1 was cut (2026-11-25T13:47:50Z), by scripts/retarget.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 45d3d00fefee, dated 2026-10-29T12:37:28Z (source.commit_epoch).",
+    "source_date_epoch_provenance": "the time release 9.7.2-3-CE-ubuntu24.04-r2 was cut (2026-11-26T05:59:55Z), by scripts/rerelease-agenda.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 45d3d00fefee, dated 2026-10-29T12:37:28Z (source.commit_epoch).",
     "source_prep": [
       "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
     ],

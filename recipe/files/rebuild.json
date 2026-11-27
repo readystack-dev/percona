@@ -16,8 +16,8 @@
     "context": ".",
     "dockerfile": "Dockerfile.offline.pinned",
     "mtime_policy": "clamp",
-    "source_date_epoch": 1795614470,
-    "tree_hash": "sha256:c9e02b54567dfb96e078418d18b4b866cf69883dd94f5b99f062e9cf31685d27"
+    "source_date_epoch": 1795672795,
+    "tree_hash": "sha256:c249fc56192580669ee43b4747eeb4298467b5c050008943fc895748658e780b"
   },
   "probe": {
     "exec": "mysqladmin --protocol=tcp --host=127.0.0.1 --port=3306 --connect-timeout=5 --silent ping",
@@ -29,8 +29,8 @@
   },
   "schema": "readystack-rebuild-bundle/v0.1",
   "subject": {
-    "config_digest": "sha256:30a9f3a3e83525ab555c722bdadae69c49fb29132683b946cbb9f0f503a1c5a4",
-    "image_manifest_digest": "sha256:bb3762ab917d90890bf0867d815770b45a92b256a2b937c23060a94859a1947b",
-    "name": "docker.io/readystack/percona:9.7.2-3-CE-ubuntu24.04-r1"
+    "config_digest": "sha256:8d076a336af65ead2572b5eee1cc2bdfd612be448eecfba643649c64ec5a0a22",
+    "image_manifest_digest": "sha256:3b8c785b0c6400f4b36e293529b67ca3b8fa0c2f24057798d8086fdc6f389fc2",
+    "name": "docker.io/readystack/percona:9.7.2-3-CE-ubuntu24.04-r2"
   }
 }

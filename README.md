@@ -6,13 +6,13 @@
 
 # Percona: ReadyStack build kit
 
-The offline build kit for the Docker image `readystack/percona:9.7.2-3-CE-ubuntu24.04-r1`. It holds what the image is built from (upstream source, base images, toolchain, pinned dependencies) and the documents, so the image can be rebuilt with no network access (`docker build --network=none`).
+The offline build kit for the Docker image `readystack/percona:9.7.2-3-CE-ubuntu24.04-r2`. It holds what the image is built from (upstream source, base images, toolchain, pinned dependencies) and the documents, so the image can be rebuilt with no network access (`docker build --network=none`).
 
-- Release: [9.7.2-3-CE-ubuntu24.04-r1](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r1)
-- Image: [`docker.io/readystack/percona:9.7.2-3-CE-ubuntu24.04-r1`](https://hub.docker.com/r/readystack/percona/tags), manifest digest `sha256:bb3762ab917d90890bf0867d815770b45a92b256a2b937c23060a94859a1947b`
+- Release: [9.7.2-3-CE-ubuntu24.04-r2](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r2)
+- Image: [`docker.io/readystack/percona:9.7.2-3-CE-ubuntu24.04-r2`](https://hub.docker.com/r/readystack/percona/tags), manifest digest `sha256:3b8c785b0c6400f4b36e293529b67ca3b8fa0c2f24057798d8086fdc6f389fc2`
 - Product page: https://readystack.dev/products/percona
 - Source and build recipe: https://readystack.dev/products/percona/recipe
-- Build trail: https://readystack.dev/products/percona/trail/9.7.2-3-CE-ubuntu24.04-r1
+- Build trail: https://readystack.dev/products/percona/trail/9.7.2-3-CE-ubuntu24.04-r2
 - Defects: this repository's Issues (defects recorded from 25 November 2026 on) and https://readystack.dev/defects.html?product=percona
 
 ## The image
@@ -21,12 +21,12 @@ Single container. Percona Server for MySQL 9.7.2-3 (9.7 LTS) compiled from the u
 
 ## This release
 
-- Docker Scout policy grade at release: **A** (94%), graded 2026-11-25 with `docker scout policy` (CLI 1.26.0, docker-default configuration).
+- Docker Scout policy grade at release: **A** (94%), graded 2026-11-27 with `docker scout policy` (CLI 1.26.0, docker-default configuration).
   - Docker Scout counts 95 packages with copyleft licences (GPL, LGPL, MPL), all of them operating-system packages (it counts only packages whose licence it can read; the SBOM lists every component).
 - Signed with ReadyStack's release key (fingerprint `04daa92344a52dbc`): https://readystack.dev/keys/cosign.pub.
 - Runs as a non-root user (`mysql`).
 - Attestations on the image: an SPDX SBOM and SLSA provenance v1.
-- Rebuilt from this kit with network egress blocked on 2026-11-25; the rebuilt image digest is the published one.
+- Rebuilt from this kit with network egress blocked on 2026-11-27; the rebuilt image digest is the published one.
 - Base: Ubuntu 24.04.
 
 The current grade, measured again every day, is on https://readystack.dev/products/percona.
@@ -35,7 +35,7 @@ Percona is distributed under its upstream licence (GPL-2.0-only); the kit contai
 
 ## Download
 
-From the [9.7.2-3-CE-ubuntu24.04-r1 release](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r1): `ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.tar.gz` (1.1 GB), SHA-256 `90b09edebc439090501279f47065aa4bf045e0511a1ddc62e58c61f898eec2b6`.
+From the [9.7.2-3-CE-ubuntu24.04-r2 release](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r2): `ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.tar.gz` (1.1 GB), SHA-256 `dc4d5867026f635bc175be60f597c7f2d3753bccab35fc0ddbbe7defda880e2f`.
 
 ```sh
 sha256sum --check --ignore-missing SHA256SUMS
@@ -47,18 +47,18 @@ The rebuild statement is signed with the ReadyStack release key. Check the signa
 
 ```sh
 cosign verify-blob --key https://readystack.dev/keys/cosign.pub \
-  --bundle ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json.sigstore ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json
+  --bundle ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.rebuild.json.sigstore ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.rebuild.json
 ```
 
 Unpack with `-p` so file modes are kept, then follow the kit's own README.md and docs/REBUILD.md:
 
 ```sh
-tar -xpzf ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.tar.gz
-cd 9.7.2-3-CE-ubuntu24.04-r1
+tar -xpzf ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.tar.gz
+cd 9.7.2-3-CE-ubuntu24.04-r2
 less README.md docs/REBUILD.md
 ```
 
-The build trail (`ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.trail.json`, signed the same way, and its Markdown copy) records how this release was built and checked.
+The build trail (`ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r2.trail.json`, signed the same way, and its Markdown copy) records how this release was built and checked.
 
 ## This repository
 
