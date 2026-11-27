@@ -2,8 +2,8 @@
   "schema": "kitforge.custody_inputs.v1",
   "slug": "percona",
   "repo": "https://github.com/percona/percona-server",
-  "ref": "Percona-Server-9.7.2-2",
-  "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
+  "ref": "Percona-Server-9.7.2-3",
+  "commit": "45d3d00fefeeda215229e834e43d60a08bd0bf6c",
   "edition": "CE",
   "ce_audit": {
     "ce_only": true,

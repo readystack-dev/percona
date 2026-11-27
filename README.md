@@ -1,17 +1,17 @@
 # Percona: ReadyStack build kit
 
-The offline build kit for the Docker image `readystack/percona:9.7.2-2-CE-ubuntu24.04-r4`. It holds what the image is built from (upstream source, base images, toolchain, pinned dependencies) and the documents, so the image can be rebuilt with no network access (`docker build --network=none`).
+The offline build kit for the Docker image `readystack/percona:9.7.2-3-CE-ubuntu24.04-r1`. It holds what the image is built from (upstream source, base images, toolchain, pinned dependencies) and the documents, so the image can be rebuilt with no network access (`docker build --network=none`).
 
-- Release: [9.7.2-2-CE-ubuntu24.04-r4](https://github.com/readystack-dev/percona/releases/tag/9.7.2-2-CE-ubuntu24.04-r4)
-- Image: [`docker.io/readystack/percona:9.7.2-2-CE-ubuntu24.04-r4`](https://hub.docker.com/r/readystack/percona/tags), manifest digest `sha256:0a56b596de0bd71569413600002da22b5741f8d203797a06b467a32e40116ad6`
+- Release: [9.7.2-3-CE-ubuntu24.04-r1](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r1)
+- Image: [`docker.io/readystack/percona:9.7.2-3-CE-ubuntu24.04-r1`](https://hub.docker.com/r/readystack/percona/tags), manifest digest `sha256:bb3762ab917d90890bf0867d815770b45a92b256a2b937c23060a94859a1947b`
 - Product page: https://readystack.dev/products/percona
 - Source and build recipe: https://readystack.dev/products/percona/recipe
-- Build trail: https://readystack.dev/products/percona/trail/9.7.2-2-CE-ubuntu24.04-r4
+- Build trail: https://readystack.dev/products/percona/trail/9.7.2-3-CE-ubuntu24.04-r1
 - Defects: this repository's Issues (defects recorded from 25 November 2026 on) and https://readystack.dev/defects.html?product=percona
 
 ## The image
 
-Single container. Percona Server for MySQL 9.7.2-2 (9.7 LTS) compiled from the upstream source tag with CMake and installed in /usr/local/mysql. The image is the whole database server: there is no external database and no sidecar. mysqld runs in the foreground as the non-root mysql user. On the first start with an empty data directory the entrypoint creates the data directory in /var/lib/mysql and sets the root password before the server opens a network port.
+Single container. Percona Server for MySQL 9.7.2-3 (9.7 LTS) compiled from the upstream source tag with CMake and installed in /usr/local/mysql. The image is the whole database server: there is no external database and no sidecar. mysqld runs in the foreground as the non-root mysql user. On the first start with an empty data directory the entrypoint creates the data directory in /var/lib/mysql and sets the root password before the server opens a network port.
 
 ## This release
 
@@ -29,7 +29,7 @@ Percona is distributed under its upstream licence (GPL-2.0-only); the kit contai
 
 ## Download
 
-From the [9.7.2-2-CE-ubuntu24.04-r4 release](https://github.com/readystack-dev/percona/releases/tag/9.7.2-2-CE-ubuntu24.04-r4): `ReadyStack-percona-9.7.2-2-CE-ubuntu24.04-r4.tar.gz` (1.1 GB), SHA-256 `c8464fa407aec56ffda9eed00519259f50548c5fe1a0b92d4919c1f7519f03df`.
+From the [9.7.2-3-CE-ubuntu24.04-r1 release](https://github.com/readystack-dev/percona/releases/tag/9.7.2-3-CE-ubuntu24.04-r1): `ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.tar.gz` (1.1 GB), SHA-256 `90b09edebc439090501279f47065aa4bf045e0511a1ddc62e58c61f898eec2b6`.
 
 ```sh
 sha256sum --check --ignore-missing SHA256SUMS
@@ -41,18 +41,18 @@ The rebuild statement is signed with the ReadyStack release key. Check the signa
 
 ```sh
 cosign verify-blob --key https://readystack.dev/keys/cosign.pub \
-  --bundle ReadyStack-percona-9.7.2-2-CE-ubuntu24.04-r4.rebuild.json.sigstore ReadyStack-percona-9.7.2-2-CE-ubuntu24.04-r4.rebuild.json
+  --bundle ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json.sigstore ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.rebuild.json
 ```
 
 Unpack with `-p` so file modes are kept, then follow the kit's own README.md and docs/REBUILD.md:
 
 ```sh
-tar -xpzf ReadyStack-percona-9.7.2-2-CE-ubuntu24.04-r4.tar.gz
-cd 9.7.2-2-CE-ubuntu24.04-r4
+tar -xpzf ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.tar.gz
+cd 9.7.2-3-CE-ubuntu24.04-r1
 less README.md docs/REBUILD.md
 ```
 
-The build trail (`ReadyStack-percona-9.7.2-2-CE-ubuntu24.04-r4.trail.json`, signed the same way, and its Markdown copy) records how this release was built and checked.
+The build trail (`ReadyStack-percona-9.7.2-3-CE-ubuntu24.04-r1.trail.json`, signed the same way, and its Markdown copy) records how this release was built and checked.
 
 ## This repository
 

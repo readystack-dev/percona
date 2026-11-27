@@ -1,6 +1,6 @@
-image_manifest_digest=sha256:0a56b596de0bd71569413600002da22b5741f8d203797a06b467a32e40116ad6
-config_digest=sha256:09dc8148839e15a24a872ca733490b7a85b15ecfd74478596d623a969595fd9e
-tag=readystack/percona:9.7.2-2-CE-ubuntu24.04-r4
+image_manifest_digest=sha256:bb3762ab917d90890bf0867d815770b45a92b256a2b937c23060a94859a1947b
+config_digest=sha256:30a9f3a3e83525ab555c722bdadae69c49fb29132683b946cbb9f0f503a1c5a4
+tag=readystack/percona:9.7.2-3-CE-ubuntu24.04-r1
 probe_port=3306
 probe_path=/
 probe_timeout=180

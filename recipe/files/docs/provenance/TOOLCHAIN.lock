@@ -49,7 +49,7 @@
     }
   ],
   "build_method": "source-rebuild-c",
-  "chain_id": 1248,
+  "chain_id": 1258,
   "dep_bumps": [],
   "expected_residuals": [],
   "images": [
@@ -119,18 +119,18 @@
     ],
     "build_system": "cmake",
     "builder_image": "ubuntu:24.04",
-    "commit": "91438a0430fbcd52dd85472edf3b357484484c22",
-    "commit_epoch": 1789902098,
+    "commit": "45d3d00fefeeda215229e834e43d60a08bd0bf6c",
+    "commit_epoch": 1793277448,
     "install_prefix": "/usr/local/mysql",
-    "ref": "Percona-Server-9.7.2-2",
+    "ref": "Percona-Server-9.7.2-3",
     "repo": "https://github.com/percona/percona-server",
-    "source_date_epoch": 1795543333,
+    "source_date_epoch": 1795614470,
     "source_date_epoch_basis": "release-cut",
-    "source_date_epoch_provenance": "the time release 9.7.2-2-CE-ubuntu24.04-r4 was cut (2026-11-24T18:02:13Z), by scripts/rerelease-agenda.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 91438a0430fb, dated 2026-09-20T11:01:38Z (source.commit_epoch).",
+    "source_date_epoch_provenance": "the time release 9.7.2-3-CE-ubuntu24.04-r1 was cut (2026-11-25T13:47:50Z), by scripts/retarget.py: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 45d3d00fefee, dated 2026-10-29T12:37:28Z (source.commit_epoch).",
     "source_prep": [
       "git submodule update --init --depth 1 --recursive --jobs 4 && test -f storage/rocksdb/rocksdb/CMakeLists.txt && test -f extra/coredumper/CMakeLists.txt && test -f extra/libkmip/CMakeLists.txt && test -d extra/jwt-cpp/include"
     ],
     "vendored_deps": true
   },
-  "version": "9.7.2-2"
+  "version": "9.7.2-3"
 }
